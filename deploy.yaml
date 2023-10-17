@@ -21,6 +21,7 @@ spec:
       containers:
       - name: my-springboot-app
         image: rahulkatlaparthi1997/rahulnewjava:latest
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8090
 # service type loadbalancer       

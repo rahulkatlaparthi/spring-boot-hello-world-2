@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print Hello World
-        run: echo "Hello, World! This is GitHub Actions."
+        run: echo "Hello Rahul"

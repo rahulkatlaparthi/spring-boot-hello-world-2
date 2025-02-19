@@ -1,18 +1,28 @@
-name: Hello World Workflow
+name: Example Workflow with Inputs
 
-on: 
-  push:
-    branches:
-      - main
-  
-  
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - staging
+          - prod
+      debug:
+        description: 'Enable debug mode'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
-  say-hello:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Print Hello World
-        run: echo "Hello Rahul"
+      - name: Print input values
+        run: |
+          echo "Deploying to environment: ${{ inputs.environment }}"
+          echo "Debug mode: ${{ inputs.debug }}"

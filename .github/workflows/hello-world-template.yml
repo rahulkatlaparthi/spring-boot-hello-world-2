@@ -1,0 +1,14 @@
+name: Reusable Hello World Workflow
+
+on:
+  workflow_call:  # This makes it reusable
+
+jobs:
+  say-hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Print Hello World
+        run: echo "Hello Rahul, from the reusable workflow!"

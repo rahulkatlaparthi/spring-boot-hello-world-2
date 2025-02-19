@@ -1,28 +1,36 @@
-name: Example Workflow with Inputs
+name: Conditional Job Workflow
 
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Environment to deploy to'
+      job_to_run:
+        description: 'Select which job to run'
         required: true
-        default: 'dev'
+        default: 'job1'
         type: choice
         options:
-          - dev
-          - staging
-          - prod
-      debug:
-        description: 'Enable debug mode'
-        required: false
-        default: false
-        type: boolean
+          - job1
+          - job2
+          - job3
 
 jobs:
-  deploy:
+  job1:
     runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.job_to_run == 'job1' }}
     steps:
-      - name: Print input values
-        run: |
-          echo "Deploying to environment: ${{ inputs.environment }}"
-          echo "Debug mode: ${{ inputs.debug }}"
+      - name: Run Job 1
+        run: echo "Running Job 1"
+
+  job2:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.job_to_run == 'job2' }}
+    steps:
+      - name: Run Job 2
+        run: echo "Running Job 2"
+
+  job3:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.inputs.job_to_run == 'job3' }}
+    steps:
+      - name: Run Job 3
+        run: echo "Running Job 3"

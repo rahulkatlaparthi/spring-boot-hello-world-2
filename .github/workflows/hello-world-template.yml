@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print Hello World
-        run: echo "Hello Rahul, from the reusable workflow!"
+        run: echo "Hello kidz, from the reusable workflow!"

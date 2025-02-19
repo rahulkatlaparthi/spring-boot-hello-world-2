@@ -11,4 +11,4 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Print Hello World
-        run: echo "Hello kidz, from the reusable workflow!"
+        run: echo "Hello kidz, from the reusable workflow! My secret is ${{ secrets.SAMPLE}}"

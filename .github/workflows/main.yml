@@ -38,4 +38,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: rahuldevops/myapp:latest
+          tags: rahulkatlaparthi1997/rahuldevops:latest

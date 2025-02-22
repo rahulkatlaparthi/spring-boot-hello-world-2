@@ -39,4 +39,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: github/action:latest
+          tags: rahuldevops/myapp:latest  # Corrected repository name

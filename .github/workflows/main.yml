@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch: 
+  workflow_dispatch:
 
 jobs:
   build-and-push:
@@ -33,7 +33,19 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and Push Docker Image  # ✅ Fixed indentation
+      - name: Build Docker Image
+        run: docker build -t rahulkatlaparthi1997/rahuldevops:latest .
+
+      - name: Scan Docker Image with Trivy
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'rahulkatlaparthi1997/rahuldevops:latest'
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Push Docker Image
+        if: success()
         uses: docker/build-push-action@v5
         with:
           context: .
